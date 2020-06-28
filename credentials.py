@@ -47,3 +47,15 @@ class Credentials:
         :return:
         """
         return cls.credential_list
+
+    @classmethod
+    def check_if_exists(cls, name):
+        """
+
+        :param name:
+        :return:
+        """
+        for credential in cls.credential_list:
+            if credential.app_name == name:
+                return True
+        return False
