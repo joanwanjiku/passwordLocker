@@ -129,7 +129,6 @@ def main():
                     print('Exiting...')
                     break
 
-                    print('Ok')
     else:
         password = input('User not found, Enter password for to create account: ')
         add_user(create_user(name, password))
@@ -207,7 +206,6 @@ def main():
                 print('Exiting...')
                 break
 
-                print('Ok')
 
         print('\n')
 
