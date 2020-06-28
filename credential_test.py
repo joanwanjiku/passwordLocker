@@ -77,3 +77,15 @@ class TestCredentials(unittest.TestCase):
         :return:
         """
         self.assertEqual(Credentials.display_credentials(), Credentials.credential_list)
+
+    def test_whether_credential_exist(self):
+        """
+
+        :return:
+        """
+        self.new_credential.save_credential()
+        another_credential = Credentials("facebook", "jojoOne","7891011")
+        another_credential.save_credential()
+
+        present_credential = another_credential.check_if_exists("facebook")
+        self.assertTrue(present_credential)
