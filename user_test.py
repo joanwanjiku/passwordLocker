@@ -8,7 +8,7 @@ class TestUser(unittest.TestCase):
     """
     def setUp(self):
         """
-
+        method that runs before each testcase
         """
         self.new_user = User("Joan", "foobar")
 
