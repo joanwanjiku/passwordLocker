@@ -59,20 +59,37 @@ def main():
                 save_credentials(create_credential(app_name, username, password))
 
                 print('New credential created app: %s username: %s password: %s' % (app_name, username, password))
+                print('\n')
 
             elif pass_option == 'no':
                 password = input('Enter Password ...')
                 save_credentials(create_credential(app_name, username, password))
 
                 print('New credential created app: %s username: %s password: %s' % (app_name, username, password))
+                print('\n')
 
             else:
                 print('Try again..')
+                print('\n')
 
         elif code_word == 'display':
-            print('You have chosen to display')
+            if display_credentials():
+                print('List of all credentials..')
+                for credential in display_credentials():
+                    print('%s %s' % (credential.app_name, credential.username))
+                print('\n')
+
+            else:
+                print('You have not added any credentials')
+                print('\n')
+
         elif code_word == 'find':
             print('You have chosen to find')
+            name_search = input('Enter the application name: ').lower()
+            credentials = find_credentials_by_app_name(name_search)
+            print('Found .. %s username: %s password: %s' % (credentials.app_name, credentials.username, credentials.password))
+            print('\n')
+
         else:
             print('Exiting...')
             break
