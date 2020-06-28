@@ -29,6 +29,10 @@ def display_credentials():
     return Credentials.display_credentials()
 
 
+def check_existence(name):
+    return Credentials.check_if_exists(name)
+
+
 def main():
     print("Hi Welcome to your password locker. Create your login credentials")
     name = input("Name: ")
@@ -38,7 +42,7 @@ def main():
     print(name + " What do you want to achieve? ")
     print('\n')
     while True:
-        print("For adding a credential, type:- add\nFor displaying all credentials, type:- display\nFor finding credentials, type:- find")
+        print("For adding a credential, type:- add\nFor displaying all credentials, type:- display\nFor finding credentials, type:- find\nFor deleting credentials, type:- delete")
         print('\n')
         code_word = input('Enter the code word: ').lower()
 
@@ -85,10 +89,24 @@ def main():
 
         elif code_word == 'find':
             print('You have chosen to find')
+
             name_search = input('Enter the application name: ').lower()
-            credentials = find_credentials_by_app_name(name_search)
-            print('Found .. %s username: %s password: %s' % (credentials.app_name, credentials.username, credentials.password))
-            print('\n')
+            if check_existence(name_search):
+                credentials = find_credentials_by_app_name(name_search)
+                print('Found .. %s username: %s password: %s' % (credentials.app_name, credentials.username, credentials.password))
+                print('\n')
+            else:
+                print('No such application, Try Again')
+
+        elif code_word == 'delete':
+            name_of_app = input('Enter the application name for which you want to delete credentials: ')
+            if check_existence(name_of_app):
+                credentials = find_credentials_by_app_name(name_of_app)
+                delete_credential(credentials)
+                print('Deleted %s successfully' % credentials.app_name)
+                print('\n')
+            else:
+                print('No such application, Try Again')
 
         else:
             print('Exiting...')
