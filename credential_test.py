@@ -8,20 +8,19 @@ class TestCredentials(unittest.TestCase):
     """
     def setUp(self):
         """
-        Run before each test case
+        method that runs before each testcase
         """
         self.new_credential = Credentials("twitter", "jojoOne", "123456")
 
     def tearDown(self):
         """
-
-        :return:
+        method that cleans up after each testcase
         """
         Credentials.credential_list = []
 
     def test_init(self):
         """
-
+        test if the object has been initialized properly
         """
         self.assertEqual(self.new_credential.app_name, "twitter")
         self.assertEqual(self.new_credential.username, "jojoOne")
@@ -37,8 +36,7 @@ class TestCredentials(unittest.TestCase):
 
     def test_save_more_credentials(self):
         """
-
-        :return:
+        check whether the credentials have been added to the list
         """
         self.new_credential.save_credential()
         another_credential = Credentials("facebook", "jojoOne","7891011")
@@ -48,8 +46,7 @@ class TestCredentials(unittest.TestCase):
 
     def test_delete_credential(self):
         """
-
-        :return:
+        check whether the credentials have been removed from the list
         """
         self.new_credential.save_credential()
         another_credential = Credentials("facebook", "jojoOne","7891011")
@@ -60,9 +57,7 @@ class TestCredentials(unittest.TestCase):
 
     def test_find_by_app_name(self):
         """
-
-        :return:
-
+        check whether we can find credentials by the app_name
         """
         self.new_credential.save_credential()
         another_credential = Credentials("facebook", "jojoOne","7891011")
@@ -73,15 +68,13 @@ class TestCredentials(unittest.TestCase):
 
     def test_display_all_credentials(self):
         """
-
-        :return:
+        test method to check whether all credentials in the list are being displayed
         """
         self.assertEqual(Credentials.display_credentials(), Credentials.credential_list)
 
     def test_whether_credential_exist(self):
         """
-
-        :return:
+        test to check if credential exist
         """
         self.new_credential.save_credential()
         another_credential = Credentials("facebook", "jojoOne","7891011")
